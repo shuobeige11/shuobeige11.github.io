@@ -1,79 +1,36 @@
 <!DOCTYPE html>
-<html lang="zh-cmn-hans">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge, chrome=1">
-        <title>正在打开支付宝</title>
-    </head>
-    <body>
-        <script>
-    var _0 = "https://qr.alipay.com/c1x09599iy4lukt7y08cn3e";
-    var _1 = "https://qr.alipay.com/c1x09599iy4lukt7y08cn3e";
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <script type="text/javascript">
+(function(){var a=window.screen.availWidth;var b=window.screen.availWidth/window.devicePixelRatio;var deviceWidths =a>640?b:a;var Win={dev:640,fonts:20,start:function(){this.boots()},boots:function(){var dpr=1,f=this.fonts;if(deviceWidths<800){dpr=1/window.devicePixelRatio;f=((this.fonts/dpr)*(deviceWidths/320)).toFixed(3);var ele=document.createElement("meta");document.head.appendChild(ele);ele.setAttribute("name","viewport");var e="initial-scale="+dpr+",maximum-scale="+dpr+",minimum-scale="+dpr+",user-scalable=no";ele.setAttribute("content",e)};document.head.parentNode.style.fontSize=f+"px";var c=window.devicePixelRatio;document.head.parentNode.setAttribute("data-dpr",c)}};Win.start()}()); </script>
+  <link rel="stylesheet" type="text/css" href="image/all.css">
+</head>
+<body>
+	<canvas id="canvas"></canvas>
+</body>
+<script type="text/javascript" src="script/money.js"></script>
+<script type="text/javascript" src="script/basket.js"></script>
+<script type="text/javascript">
+	(function(){
+		var canvas=document.getElementById("canvas");
+		canvas.width=window.innerWidth;
+		canvas.height=window.innerHeight;
+		Basket({
+			"uri":"image/basket.png",
+			"id":"canvas",
+			"img1":"image/money_1.png",
+			"img2":"image/money_2.png"
+		});
+		Money({
+			"img1":"image/money_1.png",
+			"img2":"image/money_2.png",
+			"id":"canvas",
+			"timer":2
+		})	
+	}());
 
-    function is_weixin() {
-        if (/MicroMessenger/i.test(navigator.userAgent)) {
-            return true
-        } else {
-            return false
-        }
-    }
-    function is_android() {
-        var a = navigator.userAgent.toLowerCase();
-        if (a.match(/(Android|SymbianOS)/i)) {
-            return true
-        } else {
-            return false
-        }
-    }
-    function is_ios() {
-        var a = navigator.userAgent.toLowerCase();
-        if (/iphone|ipad|ipod/.test(a)) {
-            return true
-        } else {
-            return false
-        }
-    }
-    function android_auto_jump() {
-        WeixinJSBridge.invoke("jumpToInstallUrl", {}, function (e) {});
-        window.close();
-        WeixinJSBridge.call("closeWindow")
-    }
-    function ios_auto_jump() {
-        if (_0 != "") {
-            location.href = _0
-        } else {
-            window.close();
-            WeixinJSBridge.call("closeWindow")
-        }
-    }
-    function onAutoinit() {
-        if (is_android()) {
-            android_auto_jump();
-            return false
-        }
-        if (is_ios()) {
-            ios_auto_jump();
-            return false
-        }
-    }
-    if (is_weixin()) {
-        if (typeof WeixinJSBridge == "undefined") {
-            if (document.addEventListener) {
-                document.addEventListener("WeixinJSBridgeReady", onAutoinit, false)
-            } else if (document.attachEvent) {
-                document.attachEvent("WeixinJSBridgeReady", onAutoinit);
-                document.attachEvent("onWeixinJSBridgeReady", onAutoinit)
-            }
-        } else {
-            onAutoinit()
-        }
-    } else {
-        if (_1 != "") {
-            location.href = _1
-        } else {
-            window.close()
-        }
-    }</script>
-    </body>
+		
+</script>
 </html>
